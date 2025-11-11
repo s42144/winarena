@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>WinArena - Play, Earn & Win</title>
+    <title>Gaming Platform</title>
     
     <!-- Telegram WebApp SDK -->
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
@@ -433,6 +433,109 @@
             gap: 5px;
             color: var(--warning-color);
             font-size: 13px;
+        }
+
+        /* Casino Games */
+        .casino-game {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin-bottom: 15px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .casino-game:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .casino-icon {
+            font-size: 48px;
+            margin-bottom: 10px;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .casino-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+
+        .casino-min-bet {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+        }
+
+        .casino-rtp {
+            font-size: 12px;
+            color: var(--success-color);
+            margin-bottom: 15px;
+        }
+
+        /* Game Modal */
+        .game-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .game-modal.active {
+            display: flex;
+        }
+
+        .game-modal-content {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+        }
+
+        .game-modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--text-secondary);
+            cursor: pointer;
+        }
+
+        .game-display {
+            font-size: 48px;
+            font-weight: 700;
+            margin: 20px 0;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .bet-input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid var(--border-color);
+            border-radius: var(--border-radius-sm);
+            font-size: 16px;
+            text-align: center;
+            margin-bottom: 15px;
+            background: var(--card-bg);
+            color: var(--text-primary);
         }
 
         /* Social Feed */
@@ -1351,6 +1454,25 @@
             box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
         }
 
+        /* Ad Container */
+        .ad-container {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            min-height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .ad-loading {
+            color: var(--text-secondary);
+        }
+
         /* Responsive Design */
         @media (max-width: 480px) {
             .main-container {
@@ -1422,7 +1544,7 @@
     <div class="loading-screen" id="loadingScreen">
         <div class="loading-content">
             <div class="loading-spinner"></div>
-            <div class="loading-text">Welcome to WinArena</div>
+            <div class="loading-text">Welcome to Gaming Platform</div>
             <div class="loading-subtext">Loading your gaming experience...</div>
         </div>
     </div>
@@ -1432,7 +1554,7 @@
         <div class="header-content">
             <div class="logo">
                 <i class="fas fa-gamepad"></i>
-                <span>WinArena</span>
+                <span>Gaming Platform</span>
             </div>
             <div class="header-balance">
                 <i class="fas fa-coins"></i>
@@ -1456,7 +1578,7 @@
                 <div class="category-chip active" onclick="filterByCategory('all')">All Games</div>
                 <div class="category-chip" onclick="filterByCategory('action')">Action</div>
                 <div class="category-chip" onclick="filterByCategory('puzzle')">Puzzle</div>
-                <div class="category-chip" onclick="filterByCategory('strategy')">Strategy</div>
+                <div class="category-chip" onclick="filterByCategory('casino')">Casino</div>
                 <div class="category-chip" onclick="filterByCategory('sports')">Sports</div>
                 <div class="category-chip" onclick="filterByCategory('racing')">Racing</div>
             </div>
@@ -1625,6 +1747,12 @@
                 <div class="card-title">
                     <i class="fas fa-coins"></i>
                     Watch Ads & Earn
+                </div>
+                <div class="ad-container" id="adContainer">
+                    <div class="ad-loading">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <div>Loading ads...</div>
+                    </div>
                 </div>
                 <div style="text-align: center; padding: 20px 0;">
                     <div style="font-size: 24px; font-weight: 700; color: var(--success-color);">0.10 BTX</div>
@@ -1819,10 +1947,32 @@
                 </div>
                 <div style="font-size: 14px; line-height: 1.6; color: var(--text-secondary);">
                     <div style="margin-bottom: 10px;"><strong>Version:</strong> 2.0.0</div>
-                    <div style="margin-bottom: 10px;"><strong>Developer:</strong> WinArena Team</div>
-                    <div style="margin-bottom: 10px;"><strong>Website:</strong> winarena.vercel.app</div>
-                    <div><strong>Support:</strong> @WinArenaGame_bot</div>
+                    <div style="margin-bottom: 10px;"><strong>Developer:</strong> Gaming Platform Team</div>
+                    <div style="margin-bottom: 10px;"><strong>Website:</strong> gamingplatform.vercel.app</div>
+                    <div><strong>Support:</strong> @GamingPlatform_bot</div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Modal -->
+    <div class="game-modal" id="gameModal">
+        <div class="game-modal-content">
+            <button class="game-modal-close" onclick="closeGameModal()">
+                <i class="fas fa-times"></i>
+            </button>
+            <div id="gameModalTitle" style="font-size: 20px; font-weight: 700; margin-bottom: 20px;">Game Title</div>
+            <div id="gameDisplay" class="game-display">🎰</div>
+            <input type="number" id="betInput" class="bet-input" placeholder="Enter bet amount" min="1">
+            <div style="display: flex; gap: 10px;">
+                <button class="btn btn-success" onclick="placeBet()">
+                    <i class="fas fa-dice"></i>
+                    Play
+                </button>
+                <button class="btn btn-outline" onclick="closeGameModal()">
+                    <i class="fas fa-times"></i>
+                    Close
+                </button>
             </div>
         </div>
     </div>
@@ -1892,10 +2042,10 @@
         // Firebase Configuration
         const firebaseConfig = {
             apiKey: "AIzaSyYOUR_API_KEY_HERE",
-            authDomain: "winarena-app.firebaseapp.com",
-            databaseURL: "https://winarena-app-default-rtdb.firebaseio.com",
-            projectId: "winarena-app",
-            storageBucket: "winarena-app.appspot.com",
+            authDomain: "gaming-platform-app.firebaseapp.com",
+            databaseURL: "https://gaming-platform-app-default-rtdb.firebaseio.com",
+            projectId: "gaming-platform-app",
+            storageBucket: "gaming-platform-app.appspot.com",
             messagingSenderId: "123456789012",
             appId: "1:123456789012:web:abcdef123456789012345"
         };
@@ -1915,6 +2065,64 @@
             notifications: true,
             darkMode: false
         };
+
+        // Casino Games Configuration
+        const casinoGames = {
+            'slots': { 
+                title: 'Slot Machine', 
+                icon: '🎰', 
+                minBet: 1, 
+                maxBet: 1000, 
+                rtp: 95,
+                symbols: ['🍒', '🍋', '🍊', '🍉', '⭐', '💎', '7️⃣'],
+                payouts: {
+                    '🍒🍒🍒': 5,
+                    '🍋🍋🍋': 10,
+                    '🍊🍊🍊': 15,
+                    '🍉🍉🍉': 20,
+                    '⭐⭐⭐': 50,
+                    '💎💎💎': 100,
+                    '7️⃣7️⃣7️⃣': 500
+                }
+            },
+            'roulette': { 
+                title: 'Roulette', 
+                icon: '🎲', 
+                minBet: 1, 
+                maxBet: 500, 
+                rtp: 97.3 
+            },
+            'blackjack': { 
+                title: 'Blackjack', 
+                icon: '🃏', 
+                minBet: 5, 
+                maxBet: 1000, 
+                rtp: 99 
+            },
+            'dice': { 
+                title: 'Dice Roll', 
+                icon: '🎯', 
+                minBet: 1, 
+                maxBet: 100, 
+                rtp: 98 
+            },
+            'coinflip': { 
+                title: 'Coin Flip', 
+                icon: '🪙', 
+                minBet: 1, 
+                maxBet: 200, 
+                rtp: 98 
+            },
+            'wheel': { 
+                title: 'Wheel of Fortune', 
+                icon: '🎡', 
+                minBet: 2, 
+                maxBet: 300, 
+                rtp: 96 
+            }
+        };
+
+        let currentGame = null;
 
         // Initialize App
         document.addEventListener('DOMContentLoaded', function() {
@@ -1941,6 +2149,9 @@
 
             // Initialize TON Connect
             initializeTonConnect();
+
+            // Initialize Monetag Ads
+            initializeMonetagAds();
 
             // Check for daily check-in
             checkDailyCheckin();
@@ -1993,19 +2204,105 @@
                             todayWatched: 0,
                             weekWatched: 0,
                             lifetimeWatched: 0
-                        }
+                        },
+                        completedTasks: [],
+                        lastActive: new Date().toISOString()
                     };
 
                     userRef.set(newUser).then(() => {
                         currentUser = newUser;
                         updateUserInterface();
                         handleReferral();
+                        createDefaultGames();
                     });
                 } else {
                     currentUser = snapshot.val();
                     updateUserInterface();
                     handleReferral();
                 }
+            });
+        }
+
+        function createDefaultGames() {
+            const gamesRef = database.ref('games');
+            const defaultGames = [
+                {
+                    title: 'Action Hero',
+                    description: 'Epic action game with stunning graphics',
+                    category: 'action',
+                    image: 'https://picsum.photos/seed/action/300/150',
+                    url: 'https://example.com/action-game',
+                    views: 0,
+                    rating: 4.5,
+                    active: true
+                },
+                {
+                    title: 'Puzzle Master',
+                    description: 'Challenge your mind with brain teasers',
+                    category: 'puzzle',
+                    image: 'https://picsum.photos/seed/puzzle/300/150',
+                    url: 'https://example.com/puzzle-game',
+                    views: 0,
+                    rating: 4.2,
+                    active: true
+                },
+                {
+                    title: 'Racing Pro',
+                    description: 'High-speed racing experience',
+                    category: 'racing',
+                    image: 'https://picsum.photos/seed/racing/300/150',
+                    url: 'https://example.com/racing-game',
+                    views: 0,
+                    rating: 4.7,
+                    active: true
+                },
+                {
+                    title: 'Sports Championship',
+                    description: 'Compete in various sports events',
+                    category: 'sports',
+                    image: 'https://picsum.photos/seed/sports/300/150',
+                    url: 'https://example.com/sports-game',
+                    views: 0,
+                    rating: 4.3,
+                    active: true
+                }
+            ];
+
+            defaultGames.forEach((game, index) => {
+                gamesRef.child('game_' + index).set(game);
+            });
+
+            // Create default tasks
+            const tasksRef = database.ref('tasks');
+            const defaultTasks = [
+                {
+                    title: 'Join our Telegram Channel',
+                    description: 'Join our official Telegram channel for updates',
+                    category: 'Social',
+                    reward: 5,
+                    link: 'https://t.me/yourchannel',
+                    active: true
+                },
+                {
+                    title: 'Follow on Twitter',
+                    description: 'Follow our official Twitter account',
+                    category: 'Social',
+                    reward: 3,
+                    link: 'https://twitter.com/yourhandle',
+                    active: true
+                },
+                {
+                    title: 'Watch Video Tutorial',
+                    description: 'Watch our complete tutorial video',
+                    category: 'Video',
+                    reward: 10,
+                    link: 'https://youtube.com/watch?v=example',
+                    active: true
+                }
+            ];
+
+            defaultTasks.forEach((task, index) => {
+                tasksRef.child('task_' + index).set(task);
             });
         }
 
@@ -2051,12 +2348,15 @@
         }
 
         function updateUserInterface() {
-            // Update profile info
-            document.getElementById('profileName').textContent = currentUser.name || 'Unknown';
-            document.getElementById('profileUserId').textContent = currentUser.id;
-            
-            if (currentUser.photo_url) {
-                document.getElementById('profileAvatar').src = currentUser.photo_url;
+            // Update profile info with Telegram data
+            const telegramUser = telegram.initDataUnsafe?.user;
+            if (telegramUser) {
+                document.getElementById('profileName').textContent = telegramUser.first_name + ' ' + (telegramUser.last_name || '');
+                document.getElementById('profileUserId').textContent = telegramUser.id;
+                
+                if (telegramUser.photo_url) {
+                    document.getElementById('profileAvatar').src = telegramUser.photo_url;
+                }
             }
             
             // Update balance
@@ -2092,7 +2392,7 @@
             }
             
             // Update referral info
-            const referralLink = `https://t.me/WinArenaGame_bot/open?start=${currentUser.id}`;
+            const referralLink = `https://t.me/YourGame_bot/open?start=${currentUser.id}`;
             document.getElementById('referralLink').value = referralLink;
             
             // Update wallet status
@@ -2102,7 +2402,7 @@
         function initializeTonConnect() {
             try {
                 tonConnectUI = new TON_CONNECT_UI.TonConnectUI({
-                    manifestUrl: 'https://winarena.vercel.app/tonconnect-manifest.json',
+                    manifestUrl: 'https://gamingplatform.vercel.app/tonconnect-manifest.json',
                     buttonRootId: null
                 });
 
@@ -2262,7 +2562,14 @@
             const gamesList = document.getElementById('gamesList');
             gamesList.innerHTML = '';
             
-            // Show skeleton loaders
+            // Add casino games
+            Object.keys(casinoGames).forEach(gameId => {
+                const game = casinoGames[gameId];
+                const casinoCard = createCasinoGameCard(gameId, game);
+                gamesList.appendChild(casinoCard);
+            });
+            
+            // Show skeleton loaders for regular games
             for (let i = 0; i < 3; i++) {
                 gamesList.innerHTML += '<div class="skeleton skeleton-card"></div>';
             }
@@ -2270,7 +2577,6 @@
             // Load games from Firebase
             database.ref('games').orderByChild('active').equalTo(true).once('value').then((snapshot) => {
                 const games = snapshot.val();
-                gamesList.innerHTML = '';
                 
                 if (games) {
                     Object.keys(games).forEach(gameId => {
@@ -2278,30 +2584,223 @@
                         const gameCard = createGameCard(game, gameId);
                         gamesList.appendChild(gameCard);
                     });
-                } else {
-                    gamesList.innerHTML = `
-                        <div class="empty-state">
-                            <div class="empty-icon">
-                                <i class="fas fa-gamepad"></i>
-                            </div>
-                            <div class="empty-title">No Games Available</div>
-                            <div class="empty-description">Games will be added soon by the admin</div>
-                        </div>
-                    `;
                 }
             }).catch((error) => {
                 console.error('Error loading games:', error);
                 showToast('Failed to load games', 'error');
-                gamesList.innerHTML = `
-                    <div class="empty-state">
-                        <div class="empty-icon">
-                            <i class="fas fa-exclamation-triangle"></i>
-                        </div>
-                        <div class="empty-title">Error Loading Games</div>
-                        <div class="empty-description">Please try again later</div>
-                    </div>
-                `;
             });
+        }
+
+        function createCasinoGameCard(gameId, game) {
+            const card = document.createElement('div');
+            card.className = 'casino-game';
+            card.onclick = () => openCasinoGame(gameId, game);
+            
+            card.innerHTML = `
+                <div class="casino-icon">${game.icon}</div>
+                <div class="casino-title">${game.title}</div>
+                <div class="casino-min-bet">Min Bet: ${game.minBet} BTX</div>
+                <div class="casino-rtp">RTP: ${game.rtp}%</div>
+                <button class="btn btn-success">
+                    <i class="fas fa-play"></i>
+                    Play Now
+                </button>
+            `;
+            
+            return card;
+        }
+
+        function openCasinoGame(gameId, game) {
+            currentGame = { id: gameId, ...game };
+            document.getElementById('gameModalTitle').textContent = game.title;
+            document.getElementById('gameDisplay').textContent = game.icon;
+            document.getElementById('gameModal').classList.add('active');
+        }
+
+        function closeGameModal() {
+            document.getElementById('gameModal').classList.remove('active');
+            currentGame = null;
+        }
+
+        function placeBet() {
+            const betAmount = parseFloat(document.getElementById('betInput').value);
+            
+            if (!betAmount || betAmount < currentGame.minBet) {
+                showToast(`Minimum bet is ${currentGame.minBet} BTX`, 'warning');
+                return;
+            }
+            
+            if (betAmount > currentGame.maxBet) {
+                showToast(`Maximum bet is ${currentGame.maxBet} BTX`, 'warning');
+                return;
+            }
+            
+            if (betAmount > currentUser.balance) {
+                showToast('Insufficient balance', 'warning');
+                return;
+            }
+            
+            // Deduct bet from balance
+            database.ref('users/' + currentUser.id + '/balance').set(
+                firebase.database.ServerValue.increment(-betAmount)
+            );
+            
+            // Play the game
+            const result = playCasinoGame(currentGame.id, betAmount);
+            
+            if (result.win) {
+                const winnings = result.amount;
+                database.ref('users/' + currentUser.id + '/balance').set(
+                    firebase.database.ServerValue.increment(winnings)
+                );
+                
+                // Update statistics
+                database.ref('users/' + currentUser.id + '/statistics/gamesPlayed').set(
+                    firebase.database.ServerValue.increment(1)
+                );
+                
+                document.getElementById('gameDisplay').textContent = result.display;
+                showToast(`You won ${winnings} BTX!`, 'success');
+            } else {
+                document.getElementById('gameDisplay').textContent = result.display;
+                showToast('You lost! Try again!', 'error');
+            }
+            
+            updateUserInterface();
+        }
+
+        function playCasinoGame(gameId, betAmount) {
+            switch(gameId) {
+                case 'slots':
+                    return playSlots(betAmount);
+                case 'dice':
+                    return playDice(betAmount);
+                case 'coinflip':
+                    return playCoinFlip(betAmount);
+                case 'roulette':
+                    return playRoulette(betAmount);
+                case 'blackjack':
+                    return playBlackjack(betAmount);
+                case 'wheel':
+                    return playWheel(betAmount);
+                default:
+                    return { win: false, amount: 0, display: 'Game error' };
+            }
+        }
+
+        function playSlots(betAmount) {
+            const symbols = casinoGames.slots.symbols;
+            const payouts = casinoGames.slots.payouts;
+            
+            // Generate three random symbols
+            const reel1 = symbols[Math.floor(Math.random() * symbols.length)];
+            const reel2 = symbols[Math.floor(Math.random() * symbols.length)];
+            const reel3 = symbols[Math.floor(Math.random() * symbols.length)];
+            
+            const combination = reel1 + reel2 + reel3;
+            const display = `${reel1} ${reel2} ${reel3}`;
+            
+            if (payouts[combination]) {
+                const winnings = betAmount * payouts[combination];
+                return { win: true, amount: winnings, display: display };
+            }
+            
+            return { win: false, amount: 0, display: display };
+        }
+
+        function playDice(betAmount) {
+            const dice1 = Math.floor(Math.random() * 6) + 1;
+            const dice2 = Math.floor(Math.random() * 6) + 1;
+            const total = dice1 + dice2;
+            
+            const display = `🎲 ${dice1} + ${dice2} = ${total}`;
+            
+            // Win if total is 7 or 11 (craps rules)
+            if (total === 7 || total === 11) {
+                const winnings = betAmount * 2;
+                return { win: true, amount: winnings, display: display };
+            }
+            
+            return { win: false, amount: 0, display: display };
+        }
+
+        function playCoinFlip(betAmount) {
+            const result = Math.random() < 0.5 ? 'Heads' : 'Tails';
+            const display = result === 'Heads' ? '🪙 Heads' : '🪙 Tails';
+            
+            // 50% chance to win
+            if (Math.random() < 0.5) {
+                const winnings = betAmount * 2;
+                return { win: true, amount: winnings, display: display };
+            }
+            
+            return { win: false, amount: 0, display: display };
+        }
+
+        function playRoulette(betAmount) {
+            const numbers = [];
+            const colors = [];
+            
+            // Generate roulette numbers and colors
+            for (let i = 0; i <= 36; i++) {
+                numbers.push(i);
+                if (i === 0) {
+                    colors.push('green');
+                } else if ([1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36].includes(i)) {
+                    colors.push('red');
+                } else {
+                    colors.push('black');
+                }
+            }
+            
+            const resultIndex = Math.floor(Math.random() * numbers.length);
+            const number = numbers[resultIndex];
+            const color = colors[resultIndex];
+            
+            const display = `🎲 ${number} (${color})`;
+            
+            // Simple red/black betting with 48.6% win chance
+            if (color === 'red' || color === 'black') {
+                if (Math.random() < 0.486) {
+                    const winnings = betAmount * 2;
+                    return { win: true, amount: winnings, display: display };
+                }
+            }
+            
+            return { win: false, amount: 0, display: display };
+        }
+
+        function playBlackjack(betAmount) {
+            // Simplified blackjack - just compare with dealer
+            const playerHand = Math.floor(Math.random() * 11) + 10; // 10-20
+            const dealerHand = Math.floor(Math.random() * 11) + 10; // 10-20
+            
+            const display = `🃏 You: ${playerHand} vs Dealer: ${dealerHand}`;
+            
+            if (playerHand > dealerHand) {
+                const winnings = betAmount * 2;
+                return { win: true, amount: winnings, display: display };
+            } else if (playerHand === dealerHand) {
+                // Push - return bet
+                return { win: true, amount: betAmount, display: display + ' (Push)' };
+            }
+            
+            return { win: false, amount: 0, display: display };
+        }
+
+        function playWheel(betAmount) {
+            const segments = [10, 20, 30, 40, 50, 100, 200, 500];
+            const result = segments[Math.floor(Math.random() * segments.length)];
+            
+            const display = `🎡 ${result}x multiplier`;
+            
+            // 10% chance to win big
+            if (Math.random() < 0.1) {
+                const winnings = betAmount * result;
+                return { win: true, amount: winnings, display: display };
+            }
+            
+            return { win: false, amount: 0, display: display };
         }
 
         function createGameCard(game, gameId) {
@@ -2355,13 +2854,12 @@
 
         function searchGames() {
             const searchTerm = document.getElementById('gameSearch').value.toLowerCase();
-            const gameCards = document.querySelectorAll('.game-card');
+            const gameCards = document.querySelectorAll('.game-card, .casino-game');
             
             gameCards.forEach(card => {
-                const title = card.querySelector('.game-title').textContent.toLowerCase();
-                const description = card.querySelector('.game-description').textContent.toLowerCase();
+                const title = card.querySelector('.game-title, .casino-title').textContent.toLowerCase();
                 
-                if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                if (title.includes(searchTerm)) {
                     card.style.display = 'block';
                 } else {
                     card.style.display = 'none';
@@ -2377,15 +2875,21 @@
             event.currentTarget.classList.add('active');
             
             // Filter games
-            const gameCards = document.querySelectorAll('.game-card');
+            const gameCards = document.querySelectorAll('.game-card, .casino-game');
             
             if (category === 'all') {
                 gameCards.forEach(card => {
                     card.style.display = 'block';
                 });
+            } else if (category === 'casino') {
+                document.querySelectorAll('.casino-game').forEach(card => {
+                    card.style.display = 'block';
+                });
+                document.querySelectorAll('.game-card').forEach(card => {
+                    card.style.display = 'none';
+                });
             } else {
                 // This would require category data in the game objects
-                // For now, just show all games
                 gameCards.forEach(card => {
                     card.style.display = 'block';
                 });
@@ -2395,7 +2899,7 @@
         function sortGames() {
             const sortBy = document.getElementById('sortSelect').value;
             const gamesList = document.getElementById('gamesList');
-            const gameCards = Array.from(gamesList.querySelectorAll('.game-card'));
+            const gameCards = Array.from(gamesList.querySelectorAll('.game-card, .casino-game'));
             
             gameCards.sort((a, b) => {
                 // Sorting logic would need to be implemented based on the sort type
@@ -2512,10 +3016,11 @@
                 return;
             }
             
+            const telegramUser = telegram.initDataUnsafe?.user;
             const postData = {
                 authorId: currentUser.id,
-                authorName: currentUser.name,
-                authorPhoto: currentUser.photo_url,
+                authorName: telegramUser ? telegramUser.first_name + ' ' + (telegramUser.last_name || '') : 'Unknown',
+                authorPhoto: telegramUser ? telegramUser.photo_url : '',
                 content: content,
                 timestamp: new Date().toISOString(),
                 likes: [],
@@ -2677,10 +3182,11 @@
                 return;
             }
             
+            const telegramUser = telegram.initDataUnsafe?.user;
             const commentData = {
                 authorId: currentUser.id,
-                authorName: currentUser.name,
-                authorPhoto: currentUser.photo_url,
+                authorName: telegramUser ? telegramUser.first_name + ' ' + (telegramUser.last_name || '') : 'Unknown',
+                authorPhoto: telegramUser ? telegramUser.photo_url : '',
                 content: content,
                 timestamp: new Date().toISOString()
             };
@@ -2696,12 +3202,12 @@
         }
 
         function sharePost(postId) {
-            const shareUrl = `https://t.me/WinArenaGame_bot/open?start=${currentUser.id}`;
+            const shareUrl = `https://t.me/YourGame_bot/open?start=${currentUser.id}`;
             
             if (navigator.share) {
                 navigator.share({
-                    title: 'Check out this post on WinArena',
-                    text: 'Join me on WinArena!',
+                    title: 'Check out this post on Gaming Platform',
+                    text: 'Join me on Gaming Platform!',
                     url: shareUrl
                 });
             } else {
@@ -2782,32 +3288,29 @@
                 document.getElementById('depositSection').innerHTML = `
                     <div class="card-title">
                         <i class="fas fa-clock"></i>
-                        Deposit Pending
+                        Deposit Processing
                     </div>
                     <div style="text-align: center; padding: 20px 0;">
                         <div style="font-size: 48px; color: var(--warning-color); margin-bottom: 15px;">
                             <i class="fas fa-hourglass-half"></i>
                         </div>
                         <div style="font-size: 18px; font-weight: 600; margin-bottom: 10px;">
-                            Send ${tonAmount} TON to this address:
-                        </div>
-                        <div style="background: rgba(0, 136, 204, 0.1); padding: 15px; border-radius: 8px; margin-bottom: 15px; font-family: monospace; word-break: break-all;">
-                            UQACiEaN0Qt2TjpxBdJ7XZateCvEPjdA7qf5bMo5uCPLbSoh
+                            Transaction initiated
                         </div>
                         <div style="font-size: 14px; color: var(--text-secondary); margin-bottom: 20px;">
+                            Check your TON wallet to confirm the payment of ${tonAmount} TON
+                        </div>
+                        <div style="font-size: 12px; color: var(--text-secondary); margin-bottom: 15px;">
                             Transaction ID: ${transactionId}
                         </div>
-                        <button class="btn btn-outline" onclick="copyDepositAddress()">
+                        <button class="btn btn-outline" onclick="copyTransactionId('${transactionId}')">
                             <i class="fas fa-copy"></i>
-                            Copy Address
+                            Copy Transaction ID
                         </button>
                     </div>
                 `;
                 
-                showToast('Please send TON to complete the deposit', 'info');
-                
-                // Send notification to bot
-                sendBotNotification(`New deposit request: ${tonAmount} TON from ${currentUser.name} (${currentUser.id})`);
+                showToast('Please check your TON wallet to confirm the payment', 'info');
                 
                 // Set up listener for transaction confirmation
                 setupDepositListener(transactionId, btxAmount);
@@ -2840,9 +3343,6 @@
                     
                     showToast('Deposit confirmed! ' + btxAmount + ' BTX added to your balance', 'success');
                     
-                    // Send bot notification
-                    sendBotNotification(`Deposit confirmed: ${btxAmount} BTX credited to ${currentUser.name} (${currentUser.id})`);
-                    
                     // Update UI
                     loadTransactions();
                     updateUserInterface();
@@ -2850,10 +3350,9 @@
             }, 30000); // 30 seconds for demo
         }
 
-        function copyDepositAddress() {
-            const address = 'UQACiEaN0Qt2TjpxBdJ7XZateCvEPjdA7qf5bMo5uCPLbSoh';
-            navigator.clipboard.writeText(address).then(() => {
-                showToast('Deposit address copied to clipboard!', 'success');
+        function copyTransactionId(transactionId) {
+            navigator.clipboard.writeText(transactionId).then(() => {
+                showToast('Transaction ID copied to clipboard!', 'success');
             });
         }
 
@@ -2898,9 +3397,6 @@
                 );
                 
                 showToast('Withdrawal request submitted! Awaiting admin approval', 'info');
-                
-                // Send notification to bot
-                sendBotNotification(`New withdrawal request: ${btxAmount} BTX (${tonAmount} TON) from ${currentUser.name} (${currentUser.id})`);
                 
                 // Update UI
                 loadTransactions();
@@ -3097,27 +3593,56 @@
             }
         }
 
-        function watchAd() {
-            // Load Monetag ad script
+        function initializeMonetagAds() {
+            // Initialize Monetag ad script
             const script = document.createElement('script');
-            script.src = '//libtl.com/sdk.js';
+            script.src = 'https://libtl.com/sdk.js';
             script.setAttribute('data-zone', '10168820');
             script.setAttribute('data-sdk', 'show_10168820');
+            script.async = true;
             
             script.onload = function() {
-                showToast('Ad loaded! Watching now...', 'info');
-                
-                // Simulate ad completion after 30 seconds
-                setTimeout(() => {
-                    completeAd();
-                }, 30000);
+                console.log('Monetag ads initialized');
+                document.getElementById('adContainer').innerHTML = `
+                    <div id="monetag-ad">
+                        <div style="color: var(--text-secondary);">Ads will display here</div>
+                    </div>
+                `;
             };
             
             script.onerror = function() {
-                showToast('Failed to load ad. Please try again.', 'error');
+                console.error('Failed to load Monetag ads');
+                document.getElementById('adContainer').innerHTML = `
+                    <div style="color: var(--danger-color);">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <div>Failed to load ads</div>
+                    </div>
+                `;
             };
             
             document.head.appendChild(script);
+        }
+
+        function watchAd() {
+            // Check if Monetag is available
+            if (typeof window.monetag !== 'undefined') {
+                // Show ad
+                window.monetag.showAd();
+                
+                // Simulate ad completion after 30 seconds
+                showToast('Ad started! Watching...', 'info');
+                
+                setTimeout(() => {
+                    completeAd();
+                }, 30000);
+            } else {
+                // Fallback: simulate ad watching
+                showToast('Loading ad...', 'info');
+                
+                setTimeout(() => {
+                    completeAd();
+                }, 5000);
+            }
         }
 
         function completeAd() {
@@ -3464,7 +3989,7 @@
 
         function sendBotNotification(message) {
             // Send notification to Telegram bot
-            const botToken = '8205391931:AAFs5FnMbr96RpZ8DLJEDyKpgZzCmHaqszw';
+            const botToken = 'YOUR_BOT_TOKEN';
             const chatId = 'YOUR_CHAT_ID'; // This should be your admin chat ID
             
             fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
