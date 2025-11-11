@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Gaming Platform</title>
+    <title>Play & Earn</title>
     
     <!-- Telegram WebApp SDK -->
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
@@ -51,6 +51,7 @@
             --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
             --gradient-success: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --gradient-casino: linear-gradient(135deg, #ff6b6b 0%, #ffd93d 100%);
             --border-radius: 12px;
             --border-radius-sm: 8px;
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -265,6 +266,10 @@
             background: var(--gradient-success);
         }
 
+        .btn-casino {
+            background: var(--gradient-casino);
+        }
+
         .btn-outline {
             background: transparent;
             border: 2px solid var(--primary-color);
@@ -435,107 +440,50 @@
             font-size: 13px;
         }
 
-        /* Casino Games */
+        /* Casino Game Styles */
         .casino-game {
-            background: var(--card-bg);
+            background: var(--gradient-casino);
+            color: white;
+        }
+
+        .casino-game .game-title {
+            color: white;
+        }
+
+        .casino-game .game-description {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .slot-machine {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
             border-radius: var(--border-radius);
             padding: 20px;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             text-align: center;
-            border: 1px solid var(--border-color);
-            transition: var(--transition);
         }
 
-        .casino-game:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .casino-icon {
-            font-size: 48px;
-            margin-bottom: 10px;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .casino-title {
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 8px;
-            color: var(--text-primary);
-        }
-
-        .casino-min-bet {
-            font-size: 14px;
-            color: var(--text-secondary);
-            margin-bottom: 15px;
-        }
-
-        .casino-rtp {
-            font-size: 12px;
-            color: var(--success-color);
-            margin-bottom: 15px;
-        }
-
-        /* Game Modal */
-        .game-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-
-        .game-modal.active {
+        .slot-reels {
             display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
         }
 
-        .game-modal-content {
-            background: var(--card-bg);
-            border-radius: var(--border-radius);
-            padding: 30px;
-            max-width: 400px;
-            width: 90%;
-            text-align: center;
-            position: relative;
-        }
-
-        .game-modal-close {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: none;
-            border: none;
-            font-size: 24px;
-            color: var(--text-secondary);
-            cursor: pointer;
-        }
-
-        .game-display {
-            font-size: 48px;
-            font-weight: 700;
-            margin: 20px 0;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .bet-input {
-            width: 100%;
-            padding: 12px 15px;
-            border: 2px solid var(--border-color);
+        .slot-reel {
+            width: 80px;
+            height: 80px;
+            background: white;
             border-radius: var(--border-radius-sm);
-            font-size: 16px;
-            text-align: center;
-            margin-bottom: 15px;
-            background: var(--card-bg);
-            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            font-weight: bold;
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .spinning {
+            animation: spin 0.5s linear infinite;
         }
 
         /* Social Feed */
@@ -1104,6 +1052,45 @@
             color: var(--text-secondary);
         }
 
+        /* Achievement Badges */
+        .achievements-section {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border-color);
+        }
+
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .achievement-badge {
+            text-align: center;
+            padding: 10px;
+            border-radius: var(--border-radius-sm);
+            background: rgba(0, 136, 204, 0.1);
+            transition: var(--transition);
+        }
+
+        .achievement-badge.unlocked {
+            background: var(--gradient-primary);
+            color: white;
+        }
+
+        .achievement-badge i {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+
+        .achievement-name {
+            font-size: 11px;
+            font-weight: 600;
+        }
+
         /* Settings */
         .settings-section {
             background: var(--card-bg);
@@ -1198,7 +1185,7 @@
             flex-direction: column;
             align-items: center;
             gap: 4px;
-            padding: 8px 16px;
+            padding: 8px 12px;
             cursor: pointer;
             transition: var(--transition);
             border-radius: var(--border-radius-sm);
@@ -1332,6 +1319,29 @@
             margin-bottom: 20px;
         }
 
+        /* Ad Container */
+        .ad-container {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+        }
+
+        .ad-placeholder {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: var(--border-radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
         /* Skeleton Loaders */
         .skeleton {
             background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
@@ -1454,25 +1464,6 @@
             box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
         }
 
-        /* Ad Container */
-        .ad-container {
-            background: var(--card-bg);
-            border-radius: var(--border-radius);
-            padding: 20px;
-            margin-bottom: 20px;
-            text-align: center;
-            border: 1px solid var(--border-color);
-            min-height: 250px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-
-        .ad-loading {
-            color: var(--text-secondary);
-        }
-
         /* Responsive Design */
         @media (max-width: 480px) {
             .main-container {
@@ -1505,6 +1496,14 @@
                 width: 40px;
                 height: 40px;
                 font-size: 12px;
+            }
+
+            .nav-item {
+                padding: 6px 8px;
+            }
+
+            .nav-label {
+                font-size: 10px;
             }
         }
 
@@ -1554,7 +1553,7 @@
         <div class="header-content">
             <div class="logo">
                 <i class="fas fa-gamepad"></i>
-                <span>Gaming Platform</span>
+                <span>Gaming Hub</span>
             </div>
             <div class="header-balance">
                 <i class="fas fa-coins"></i>
@@ -1576,11 +1575,11 @@
 
             <div class="categories-container" id="categoriesContainer">
                 <div class="category-chip active" onclick="filterByCategory('all')">All Games</div>
+                <div class="category-chip" onclick="filterByCategory('casino')">Casino</div>
                 <div class="category-chip" onclick="filterByCategory('action')">Action</div>
                 <div class="category-chip" onclick="filterByCategory('puzzle')">Puzzle</div>
-                <div class="category-chip" onclick="filterByCategory('casino')">Casino</div>
+                <div class="category-chip" onclick="filterByCategory('strategy')">Strategy</div>
                 <div class="category-chip" onclick="filterByCategory('sports')">Sports</div>
-                <div class="category-chip" onclick="filterByCategory('racing')">Racing</div>
             </div>
 
             <div class="sort-options">
@@ -1597,6 +1596,154 @@
                 <div class="skeleton skeleton-card"></div>
                 <div class="skeleton skeleton-card"></div>
                 <div class="skeleton skeleton-card"></div>
+            </div>
+        </div>
+
+        <!-- Casino Games Screen -->
+        <div class="screen" id="casinoScreen">
+            <div class="card">
+                <div class="card-title">
+                    <i class="fas fa-dice"></i>
+                    Lucky Slots
+                </div>
+                <div class="slot-machine">
+                    <div class="slot-reels" id="slotReels">
+                        <div class="slot-reel">🍒</div>
+                        <div class="slot-reel">🍋</div>
+                        <div class="slot-reel">🍊</div>
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <div style="font-size: 18px; font-weight: 600; margin-bottom: 10px;">
+                            Bet Amount: <span id="slotBet">1</span> BTX
+                        </div>
+                        <div style="display: flex; gap: 10px; justify-content: center; margin-bottom: 15px;">
+                            <button class="btn btn-sm" onclick="changeSlotBet(-1)">-</button>
+                            <button class="btn btn-sm" onclick="changeSlotBet(1)">+</button>
+                        </div>
+                    </div>
+                    <button class="btn btn-casino btn-lg" onclick="spinSlot()" id="spinBtn">
+                        <i class="fas fa-spinner"></i>
+                        Spin (Cost: <span id="spinCost">1</span> BTX)
+                    </button>
+                    <div id="slotResult" style="margin-top: 15px; font-weight: 600;"></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">
+                    <i class="fas fa-coins"></i>
+                    Coin Flip
+                </div>
+                <div style="text-align: center; padding: 20px 0;">
+                    <div id="coinDisplay" style="font-size: 60px; margin-bottom: 20px;">
+                        🪙
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <label class="form-label">Bet Amount</label>
+                        <input type="number" class="form-input" id="coinBet" value="1" min="1" style="width: 150px; margin: 0 auto;">
+                    </div>
+                    <div style="display: flex; gap: 10px; justify-content: center; margin-bottom: 20px;">
+                        <button class="btn btn-outline" onclick="flipCoin('heads')">
+                            <i class="fas fa-arrow-up"></i>
+                            Heads
+                        </button>
+                        <button class="btn btn-outline" onclick="flipCoin('tails')">
+                            <i class="fas fa-arrow-down"></i>
+                            Tails
+                        </button>
+                    </div>
+                    <div id="coinResult" style="font-weight: 600;"></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">
+                    <i class="fas fa-dice-one"></i>
+                    Dice Roll
+                </div>
+                <div style="text-align: center; padding: 20px 0;">
+                    <div id="diceDisplay" style="font-size: 60px; margin-bottom: 20px;">
+                        🎲
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <label class="form-label">Choose your number (1-6)</label>
+                        <input type="number" class="form-input" id="diceNumber" value="3" min="1" max="6" style="width: 100px; margin: 0 auto;">
+                        <br><br>
+                        <label class="form-label">Bet Amount</label>
+                        <input type="number" class="form-input" id="diceBet" value="1" min="1" style="width: 100px; margin: 0 auto;">
+                    </div>
+                    <button class="btn btn-casino" onclick="rollDice()">
+                        <i class="fas fa-dice"></i>
+                        Roll Dice
+                    </button>
+                    <div id="diceResult" style="margin-top: 15px; font-weight: 600;"></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">
+                    <i class="fas fa-bullseye"></i>
+                    Number Guess
+                </div>
+                <div style="text-align: center; padding: 20px 0;">
+                    <div style="margin-bottom: 20px;">
+                        <label class="form-label">Guess a number between 1-100</label>
+                        <input type="number" class="form-input" id="guessNumber" value="50" min="1" max="100" style="width: 100px; margin: 0 auto;">
+                        <br><br>
+                        <label class="form-label">Bet Amount</label>
+                        <input type="number" class="form-input" id="guessBet" value="1" min="1" style="width: 100px; margin: 0 auto;">
+                    </div>
+                    <button class="btn btn-casino" onclick="playNumberGuess()">
+                        <i class="fas fa-question"></i>
+                        Guess & Win
+                    </button>
+                    <div id="guessResult" style="margin-top: 15px; font-weight: 600;"></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">
+                    <i class="fas fa-heart"></i>
+                    Lucky Wheel
+                </div>
+                <div style="text-align: center; padding: 20px 0;">
+                    <div id="wheelDisplay" style="font-size: 60px; margin-bottom: 20px;">
+                        🎡
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <label class="form-label">Spin Cost</label>
+                        <div style="font-size: 18px; font-weight: 600; color: var(--primary-color);">2 BTX</div>
+                    </div>
+                    <button class="btn btn-casino" onclick="spinWheel()">
+                        <i class="fas fa-sync-alt"></i>
+                        Spin Wheel
+                    </button>
+                    <div id="wheelResult" style="margin-top: 15px; font-weight: 600;"></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">
+                    <i class="fas fa-gem"></i>
+                    Crystal Box
+                </div>
+                <div style="text-align: center; padding: 20px 0;">
+                    <div id="crystalDisplay" style="font-size: 60px; margin-bottom: 20px;">
+                        💎
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <label class="form-label">Choose a box (1-3)</label>
+                        <div style="display: flex; gap: 15px; justify-content: center; margin-bottom: 20px;">
+                            <button class="btn btn-outline" onclick="chooseCrystal(1)">Box 1</button>
+                            <button class="btn btn-outline" onclick="chooseCrystal(2)">Box 2</button>
+                            <button class="btn btn-outline" onclick="chooseCrystal(3)">Box 3</button>
+                        </div>
+                        <div style="font-size: 14px; color: var(--text-secondary);">
+                            One box contains 5x your bet! Cost: 1 BTX
+                        </div>
+                    </div>
+                    <div id="crystalResult" style="margin-weight: 600;"></div>
+                </div>
             </div>
         </div>
 
@@ -1748,12 +1895,6 @@
                     <i class="fas fa-coins"></i>
                     Watch Ads & Earn
                 </div>
-                <div class="ad-container" id="adContainer">
-                    <div class="ad-loading">
-                        <i class="fas fa-spinner fa-spin"></i>
-                        <div>Loading ads...</div>
-                    </div>
-                </div>
                 <div style="text-align: center; padding: 20px 0;">
                     <div style="font-size: 24px; font-weight: 700; color: var(--success-color);">0.10 BTX</div>
                     <div style="color: var(--text-secondary); margin-bottom: 15px;">Per ad watched</div>
@@ -1776,6 +1917,20 @@
                         <div style="font-size: 18px; font-weight: 600; color: var(--primary-color);" id="lifetimeWatched">0</div>
                         <div style="font-size: 12px; color: var(--text-secondary);">Lifetime</div>
                     </div>
+                </div>
+            </div>
+
+            <!-- Monetag Ad Container -->
+            <div class="ad-container">
+                <div class="card-title">
+                    <i class="fas fa-ad"></i>
+                    Sponsored Content
+                </div>
+                <div id="monetagAd" class="ad-placeholder">
+                    Loading advertisement...
+                </div>
+                <div style="font-size: 12px; color: var(--text-secondary); margin-top: 10px;">
+                    Ads help keep our platform free
                 </div>
             </div>
 
@@ -1879,6 +2034,74 @@
                 </div>
             </div>
 
+            <!-- Achievements Section -->
+            <div class="achievements-section">
+                <div class="card-title">
+                    <i class="fas fa-medal"></i>
+                    Achievements
+                </div>
+                <div class="achievements-grid">
+                    <div class="achievement-badge" id="achievement-first-game">
+                        <i class="fas fa-gamepad"></i>
+                        <div class="achievement-name">First Game</div>
+                    </div>
+                    <div class="achievement-badge" id="achievement-social">
+                        <i class="fas fa-comments"></i>
+                        <div class="achievement-name">Social</div>
+                    </div>
+                    <div class="achievement-badge" id="achievement-referral">
+                        <i class="fas fa-user-plus"></i>
+                        <div class="achievement-name">Referrer</div>
+                    </div>
+                    <div class="achievement-badge" id="achievement-earner">
+                        <i class="fas fa-coins"></i>
+                        <div class="achievement-name">Earner</div>
+                    </div>
+                    <div class="achievement-badge" id="achievement-vip">
+                        <i class="fas fa-crown"></i>
+                        <div class="achievement-name">VIP</div>
+                    </div>
+                    <div class="achievement-badge" id="achievement-daily">
+                        <i class="fas fa-calendar-check"></i>
+                        <div class="achievement-name">Daily User</div>
+                    </div>
+                    <div class="achievement-badge" id="achievement-gambler">
+                        <i class="fas fa-dice"></i>
+                        <div class="achievement-name">Gambler</div>
+                    </div>
+                    <div class="achievement-badge" id="achievement-master">
+                        <i class="fas fa-star"></i>
+                        <div class="achievement-name">Master</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Statistics -->
+            <div class="card">
+                <div class="card-title">
+                    <i class="fas fa-chart-bar"></i>
+                    Statistics
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;">
+                    <div style="text-align: center;">
+                        <div style="font-size: 24px; font-weight: 700; color: var(--primary-color);" id="statGamesPlayed">0</div>
+                        <div style="font-size: 12px; color: var(--text-secondary);">Games Played</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 24px; font-weight: 700; color: var(--primary-color);" id="statAdsWatched">0</div>
+                        <div style="font-size: 12px; color: var(--text-secondary);">Ads Watched</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 24px; font-weight: 700; color: var(--primary-color);" id="statTasksCompleted">0</div>
+                        <div style="font-size: 12px; color: var(--text-secondary);">Tasks Done</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 24px; font-weight: 700; color: var(--primary-color);" id="statPostsCreated">0</div>
+                        <div style="font-size: 12px; color: var(--text-secondary);">Posts Made</div>
+                    </div>
+                </div>
+            </div>
+
             <div class="settings-section">
                 <div class="settings-item" onclick="toggleSound()">
                     <div class="settings-label">
@@ -1947,32 +2170,10 @@
                 </div>
                 <div style="font-size: 14px; line-height: 1.6; color: var(--text-secondary);">
                     <div style="margin-bottom: 10px;"><strong>Version:</strong> 2.0.0</div>
-                    <div style="margin-bottom: 10px;"><strong>Developer:</strong> Gaming Platform Team</div>
-                    <div style="margin-bottom: 10px;"><strong>Website:</strong> gamingplatform.vercel.app</div>
-                    <div><strong>Support:</strong> @GamingPlatform_bot</div>
+                    <div style="margin-bottom: 10px;"><strong>Platform:</strong> Gaming Hub</div>
+                    <div style="margin-bottom: 10px;"><strong>Support:</strong> @GamingHub_bot</div>
+                    <div><strong>Last Update:</strong> <span id="lastUpdate"></span></div>
                 </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Game Modal -->
-    <div class="game-modal" id="gameModal">
-        <div class="game-modal-content">
-            <button class="game-modal-close" onclick="closeGameModal()">
-                <i class="fas fa-times"></i>
-            </button>
-            <div id="gameModalTitle" style="font-size: 20px; font-weight: 700; margin-bottom: 20px;">Game Title</div>
-            <div id="gameDisplay" class="game-display">🎰</div>
-            <input type="number" id="betInput" class="bet-input" placeholder="Enter bet amount" min="1">
-            <div style="display: flex; gap: 10px;">
-                <button class="btn btn-success" onclick="placeBet()">
-                    <i class="fas fa-dice"></i>
-                    Play
-                </button>
-                <button class="btn btn-outline" onclick="closeGameModal()">
-                    <i class="fas fa-times"></i>
-                    Close
-                </button>
             </div>
         </div>
     </div>
@@ -1983,6 +2184,10 @@
             <div class="nav-item active" onclick="switchScreen('home')">
                 <i class="fas fa-home nav-icon"></i>
                 <span class="nav-label">Home</span>
+            </div>
+            <div class="nav-item" onclick="switchScreen('casino')">
+                <i class="fas fa-dice nav-icon"></i>
+                <span class="nav-label">Casino</span>
             </div>
             <div class="nav-item" onclick="switchScreen('discover')">
                 <i class="fas fa-compass nav-icon"></i>
@@ -2042,10 +2247,10 @@
         // Firebase Configuration
         const firebaseConfig = {
             apiKey: "AIzaSyYOUR_API_KEY_HERE",
-            authDomain: "gaming-platform-app.firebaseapp.com",
-            databaseURL: "https://gaming-platform-app-default-rtdb.firebaseio.com",
-            projectId: "gaming-platform-app",
-            storageBucket: "gaming-platform-app.appspot.com",
+            authDomain: "gaming-hub-app.firebaseapp.com",
+            databaseURL: "https://gaming-hub-app-default-rtdb.firebaseio.com",
+            projectId: "gaming-hub-app",
+            storageBucket: "gaming-hub-app.appspot.com",
             messagingSenderId: "123456789012",
             appId: "1:123456789012:web:abcdef123456789012345"
         };
@@ -2065,64 +2270,11 @@
             notifications: true,
             darkMode: false
         };
+        let slotBetAmount = 1;
 
-        // Casino Games Configuration
-        const casinoGames = {
-            'slots': { 
-                title: 'Slot Machine', 
-                icon: '🎰', 
-                minBet: 1, 
-                maxBet: 1000, 
-                rtp: 95,
-                symbols: ['🍒', '🍋', '🍊', '🍉', '⭐', '💎', '7️⃣'],
-                payouts: {
-                    '🍒🍒🍒': 5,
-                    '🍋🍋🍋': 10,
-                    '🍊🍊🍊': 15,
-                    '🍉🍉🍉': 20,
-                    '⭐⭐⭐': 50,
-                    '💎💎💎': 100,
-                    '7️⃣7️⃣7️⃣': 500
-                }
-            },
-            'roulette': { 
-                title: 'Roulette', 
-                icon: '🎲', 
-                minBet: 1, 
-                maxBet: 500, 
-                rtp: 97.3 
-            },
-            'blackjack': { 
-                title: 'Blackjack', 
-                icon: '🃏', 
-                minBet: 5, 
-                maxBet: 1000, 
-                rtp: 99 
-            },
-            'dice': { 
-                title: 'Dice Roll', 
-                icon: '🎯', 
-                minBet: 1, 
-                maxBet: 100, 
-                rtp: 98 
-            },
-            'coinflip': { 
-                title: 'Coin Flip', 
-                icon: '🪙', 
-                minBet: 1, 
-                maxBet: 200, 
-                rtp: 98 
-            },
-            'wheel': { 
-                title: 'Wheel of Fortune', 
-                icon: '🎡', 
-                minBet: 2, 
-                maxBet: 300, 
-                rtp: 96 
-            }
-        };
-
-        let currentGame = null;
+        // Casino Game Symbols
+        const slotSymbols = ['🍒', '🍋', '🍊', '🍇', '💎', '7️⃣'];
+        let isSpinning = false;
 
         // Initialize App
         document.addEventListener('DOMContentLoaded', function() {
@@ -2163,6 +2315,7 @@
             loadReferrals();
             loadTransactions();
             updateStats();
+            updateLastUpdateTime();
 
             // Hide loading screen
             setTimeout(() => {
@@ -2171,6 +2324,44 @@
                     document.getElementById('loadingScreen').style.display = 'none';
                 }, 500);
             }, 1500);
+        }
+
+        function initializeMonetagAds() {
+            // Load Monetag ad script
+            const monetagScript = document.createElement('script');
+            monetagScript.src = '//libtl.com/sdk.js';
+            monetagScript.setAttribute('data-zone', '10168820');
+            monetagScript.setAttribute('data-sdk', 'show_10168820');
+            
+            monetagScript.onload = function() {
+                console.log('Monetag SDK loaded successfully');
+                // Try to show an ad
+                showMonetagAd();
+            };
+            
+            monetagScript.onerror = function() {
+                console.log('Monetag SDK failed to load, using placeholder');
+                document.getElementById('monetagAd').innerHTML = 'Advertisement space available';
+            };
+            
+            document.head.appendChild(monetagScript);
+        }
+
+        function showMonetagAd() {
+            const adContainer = document.getElementById('monetagAd');
+            
+            // Try to display Monetag ad
+            if (typeof libtl !== 'undefined') {
+                try {
+                    adContainer.innerHTML = '<div id="monetag-ad-container"></div>';
+                    // Monetag ad will be loaded automatically via the SDK
+                } catch (error) {
+                    console.error('Error showing Monetag ad:', error);
+                    adContainer.innerHTML = 'Ad space available';
+                }
+            } else {
+                adContainer.innerHTML = 'Loading ads...';
+            }
         }
 
         function initializeUser() {
@@ -2195,6 +2386,7 @@
                         walletConnected: false,
                         walletAddress: null,
                         settings: userSettings,
+                        achievements: [],
                         statistics: {
                             gamesPlayed: 0,
                             adsWatched: 0,
@@ -2203,106 +2395,23 @@
                             referralsCount: 0,
                             todayWatched: 0,
                             weekWatched: 0,
-                            lifetimeWatched: 0
-                        },
-                        completedTasks: [],
-                        lastActive: new Date().toISOString()
+                            lifetimeWatched: 0,
+                            casinoWins: 0,
+                            casinoLosses: 0,
+                            totalWagered: 0
+                        }
                     };
 
                     userRef.set(newUser).then(() => {
                         currentUser = newUser;
                         updateUserInterface();
                         handleReferral();
-                        createDefaultGames();
                     });
                 } else {
                     currentUser = snapshot.val();
                     updateUserInterface();
                     handleReferral();
                 }
-            });
-        }
-
-        function createDefaultGames() {
-            const gamesRef = database.ref('games');
-            const defaultGames = [
-                {
-                    title: 'Action Hero',
-                    description: 'Epic action game with stunning graphics',
-                    category: 'action',
-                    image: 'https://picsum.photos/seed/action/300/150',
-                    url: 'https://example.com/action-game',
-                    views: 0,
-                    rating: 4.5,
-                    active: true
-                },
-                {
-                    title: 'Puzzle Master',
-                    description: 'Challenge your mind with brain teasers',
-                    category: 'puzzle',
-                    image: 'https://picsum.photos/seed/puzzle/300/150',
-                    url: 'https://example.com/puzzle-game',
-                    views: 0,
-                    rating: 4.2,
-                    active: true
-                },
-                {
-                    title: 'Racing Pro',
-                    description: 'High-speed racing experience',
-                    category: 'racing',
-                    image: 'https://picsum.photos/seed/racing/300/150',
-                    url: 'https://example.com/racing-game',
-                    views: 0,
-                    rating: 4.7,
-                    active: true
-                },
-                {
-                    title: 'Sports Championship',
-                    description: 'Compete in various sports events',
-                    category: 'sports',
-                    image: 'https://picsum.photos/seed/sports/300/150',
-                    url: 'https://example.com/sports-game',
-                    views: 0,
-                    rating: 4.3,
-                    active: true
-                }
-            ];
-
-            defaultGames.forEach((game, index) => {
-                gamesRef.child('game_' + index).set(game);
-            });
-
-            // Create default tasks
-            const tasksRef = database.ref('tasks');
-            const defaultTasks = [
-                {
-                    title: 'Join our Telegram Channel',
-                    description: 'Join our official Telegram channel for updates',
-                    category: 'Social',
-                    reward: 5,
-                    link: 'https://t.me/yourchannel',
-                    active: true
-                },
-                {
-                    title: 'Follow on Twitter',
-                    description: 'Follow our official Twitter account',
-                    category: 'Social',
-                    reward: 3,
-                    link: 'https://twitter.com/yourhandle',
-                    active: true
-                },
-                {
-                    title: 'Watch Video Tutorial',
-                    description: 'Watch our complete tutorial video',
-                    category: 'Video',
-                    reward: 10,
-                    link: 'https://youtube.com/watch?v=example',
-                    active: true
-                }
-            ];
-
-            defaultTasks.forEach((task, index) => {
-                tasksRef.child('task_' + index).set(task);
             });
         }
 
@@ -2349,8 +2458,8 @@
 
         function updateUserInterface() {
             // Update profile info with Telegram data
-            const telegramUser = telegram.initDataUnsafe?.user;
-            if (telegramUser) {
+            if (telegram?.initDataUnsafe?.user) {
+                const telegramUser = telegram.initDataUnsafe.user;
                 document.getElementById('profileName').textContent = telegramUser.first_name + ' ' + (telegramUser.last_name || '');
                 document.getElementById('profileUserId').textContent = telegramUser.id;
                 
@@ -2372,6 +2481,17 @@
             
             document.getElementById('profileEarned').textContent = currentUser.totalEarned || 0;
             
+            // Update detailed statistics
+            if (currentUser.statistics) {
+                document.getElementById('statGamesPlayed').textContent = currentUser.statistics.gamesPlayed || 0;
+                document.getElementById('statAdsWatched').textContent = currentUser.statistics.adsWatched || 0;
+                document.getElementById('statTasksCompleted').textContent = currentUser.statistics.tasksCompleted || 0;
+                document.getElementById('statPostsCreated').textContent = currentUser.statistics.postsCreated || 0;
+                document.getElementById('todayWatched').textContent = currentUser.statistics.todayWatched || 0;
+                document.getElementById('weekWatched').textContent = currentUser.statistics.weekWatched || 0;
+                document.getElementById('lifetimeWatched').textContent = currentUser.statistics.lifetimeWatched || 0;
+            }
+            
             // Update settings
             if (currentUser.settings) {
                 userSettings = currentUser.settings;
@@ -2384,25 +2504,73 @@
                 }
             }
             
-            // Update statistics
-            if (currentUser.statistics) {
-                document.getElementById('todayWatched').textContent = currentUser.statistics.todayWatched || 0;
-                document.getElementById('weekWatched').textContent = currentUser.statistics.weekWatched || 0;
-                document.getElementById('lifetimeWatched').textContent = currentUser.statistics.lifetimeWatched || 0;
-            }
+            // Update achievements
+            updateAchievements();
             
             // Update referral info
-            const referralLink = `https://t.me/YourGame_bot/open?start=${currentUser.id}`;
+            const referralLink = `https://t.me/GamingHub_bot/open?start=${currentUser.id}`;
             document.getElementById('referralLink').value = referralLink;
             
             // Update wallet status
             updateWalletStatus();
         }
 
+        function updateAchievements() {
+            const achievements = currentUser.achievements || [];
+            const stats = currentUser.statistics || {};
+            
+            // Check and update achievement badges
+            if (stats.gamesPlayed > 0) {
+                unlockAchievement('first-game');
+            }
+            if (stats.postsCreated > 0) {
+                unlockAchievement('social');
+            }
+            if (currentUser.referrals && currentUser.referrals.length > 0) {
+                unlockAchievement('referral');
+            }
+            if (currentUser.totalEarned >= 100) {
+                unlockAchievement('earner');
+            }
+            if (currentUser.level >= 10) {
+                unlockAchievement('vip');
+            }
+            if (currentUser.checkinStreak >= 7) {
+                unlockAchievement('daily');
+            }
+            if (stats.casinoWins >= 10) {
+                unlockAchievement('gambler');
+            }
+            if (currentUser.level >= 20 && stats.gamesPlayed >= 100) {
+                unlockAchievement('master');
+            }
+        }
+
+        function unlockAchievement(achievementId) {
+            const badge = document.getElementById('achievement-' + achievementId);
+            if (badge && !badge.classList.contains('unlocked')) {
+                badge.classList.add('unlocked');
+                
+                // Add to user achievements if not already there
+                if (!currentUser.achievements.includes(achievementId)) {
+                    currentUser.achievements.push(achievementId);
+                    database.ref('users/' + currentUser.id + '/achievements').set(currentUser.achievements);
+                    
+                    // Award achievement bonus
+                    const achievementBonus = 5;
+                    database.ref('users/' + currentUser.id + '/balance').set(
+                        firebase.database.ServerValue.increment(achievementBonus)
+                    );
+                    
+                    showToast(`Achievement unlocked! +${achievementBonus} BTX`, 'success');
+                }
+            }
+        }
+
         function initializeTonConnect() {
             try {
                 tonConnectUI = new TON_CONNECT_UI.TonConnectUI({
-                    manifestUrl: 'https://gamingplatform.vercel.app/tonconnect-manifest.json',
+                    manifestUrl: 'https://gaming-hub.vercel.app/tonconnect-manifest.json',
                     buttonRootId: null
                 });
 
@@ -2539,6 +2707,9 @@
                 case 'home':
                     loadGames();
                     break;
+                case 'casino':
+                    // Casino games are already loaded
+                    break;
                 case 'discover':
                     loadPosts();
                     break;
@@ -2547,6 +2718,7 @@
                     break;
                 case 'earn':
                     loadTasks();
+                    showMonetagAd();
                     break;
                 case 'referral':
                     loadReferrals();
@@ -2562,268 +2734,100 @@
             const gamesList = document.getElementById('gamesList');
             gamesList.innerHTML = '';
             
-            // Add casino games
-            Object.keys(casinoGames).forEach(gameId => {
-                const game = casinoGames[gameId];
-                const casinoCard = createCasinoGameCard(gameId, game);
-                gamesList.appendChild(casinoCard);
+            // Predefined games with casino games
+            const games = [
+                {
+                    id: 'slots',
+                    title: 'Lucky Slots',
+                    description: 'Spin the reels and win big! Classic casino slot machine.',
+                    category: 'casino',
+                    views: 15234,
+                    rating: 4.8,
+                    image: 'https://picsum.photos/seed/slots/300/150',
+                    url: '#casino'
+                },
+                {
+                    id: 'roulette',
+                    title: 'Russian Roulette',
+                    description: 'Test your luck with our roulette game. High stakes, high rewards!',
+                    category: 'casino',
+                    views: 12456,
+                    rating: 4.6,
+                    image: 'https://picsum.photos/seed/roulette/300/150',
+                    url: '#casino'
+                },
+                {
+                    id: 'poker',
+                    title: 'Texas Hold\'em',
+                    description: 'Play poker against players worldwide. Show your skills!',
+                    category: 'casino',
+                    views: 18923,
+                    rating: 4.9,
+                    image: 'https://picsum.photos/seed/poker/300/150',
+                    url: '#casino'
+                },
+                {
+                    id: 'blackjack',
+                    title: 'Blackjack 21',
+                    description: 'Classic blackjack game. Beat the dealer to win!',
+                    category: 'casino',
+                    views: 14567,
+                    rating: 4.7,
+                    image: 'https://picsum.photos/seed/blackjack/300/150',
+                    url: '#casino'
+                },
+                {
+                    id: 'wheel',
+                    title: 'Fortune Wheel',
+                    description: 'Spin the wheel of fortune and multiply your winnings!',
+                    category: 'casino',
+                    views: 11234,
+                    rating: 4.5,
+                    image: 'https://picsum.photos/seed/wheel/300/150',
+                    url: '#casino'
+                },
+                {
+                    id: 'dice',
+                    title: 'Dice Masters',
+                    description: 'Roll the dice and test your luck in this exciting game!',
+                    category: 'casino',
+                    views: 9876,
+                    rating: 4.4,
+                    image: 'https://picsum.photos/seed/dice/300/150',
+                    url: '#casino'
+                }
+            ];
+            
+            games.forEach(game => {
+                const gameCard = createGameCard(game);
+                gamesList.appendChild(gameCard);
             });
-            
-            // Show skeleton loaders for regular games
-            for (let i = 0; i < 3; i++) {
-                gamesList.innerHTML += '<div class="skeleton skeleton-card"></div>';
-            }
-            
-            // Load games from Firebase
-            database.ref('games').orderByChild('active').equalTo(true).once('value').then((snapshot) => {
-                const games = snapshot.val();
-                
-                if (games) {
-                    Object.keys(games).forEach(gameId => {
-                        const game = games[gameId];
-                        const gameCard = createGameCard(game, gameId);
-                        gamesList.appendChild(gameCard);
-                    });
-                }
-            }).catch((error) => {
-                console.error('Error loading games:', error);
-                showToast('Failed to load games', 'error');
-            });
         }
 
-        function createCasinoGameCard(gameId, game) {
-            const card = document.createElement('div');
-            card.className = 'casino-game';
-            card.onclick = () => openCasinoGame(gameId, game);
-            
-            card.innerHTML = `
-                <div class="casino-icon">${game.icon}</div>
-                <div class="casino-title">${game.title}</div>
-                <div class="casino-min-bet">Min Bet: ${game.minBet} BTX</div>
-                <div class="casino-rtp">RTP: ${game.rtp}%</div>
-                <button class="btn btn-success">
-                    <i class="fas fa-play"></i>
-                    Play Now
-                </button>
-            `;
-            
-            return card;
-        }
-
-        function openCasinoGame(gameId, game) {
-            currentGame = { id: gameId, ...game };
-            document.getElementById('gameModalTitle').textContent = game.title;
-            document.getElementById('gameDisplay').textContent = game.icon;
-            document.getElementById('gameModal').classList.add('active');
-        }
-
-        function closeGameModal() {
-            document.getElementById('gameModal').classList.remove('active');
-            currentGame = null;
-        }
-
-        function placeBet() {
-            const betAmount = parseFloat(document.getElementById('betInput').value);
-            
-            if (!betAmount || betAmount < currentGame.minBet) {
-                showToast(`Minimum bet is ${currentGame.minBet} BTX`, 'warning');
-                return;
-            }
-            
-            if (betAmount > currentGame.maxBet) {
-                showToast(`Maximum bet is ${currentGame.maxBet} BTX`, 'warning');
-                return;
-            }
-            
-            if (betAmount > currentUser.balance) {
-                showToast('Insufficient balance', 'warning');
-                return;
-            }
-            
-            // Deduct bet from balance
-            database.ref('users/' + currentUser.id + '/balance').set(
-                firebase.database.ServerValue.increment(-betAmount)
-            );
-            
-            // Play the game
-            const result = playCasinoGame(currentGame.id, betAmount);
-            
-            if (result.win) {
-                const winnings = result.amount;
-                database.ref('users/' + currentUser.id + '/balance').set(
-                    firebase.database.ServerValue.increment(winnings)
-                );
-                
-                // Update statistics
-                database.ref('users/' + currentUser.id + '/statistics/gamesPlayed').set(
-                    firebase.database.ServerValue.increment(1)
-                );
-                
-                document.getElementById('gameDisplay').textContent = result.display;
-                showToast(`You won ${winnings} BTX!`, 'success');
-            } else {
-                document.getElementById('gameDisplay').textContent = result.display;
-                showToast('You lost! Try again!', 'error');
-            }
-            
-            updateUserInterface();
-        }
-
-        function playCasinoGame(gameId, betAmount) {
-            switch(gameId) {
-                case 'slots':
-                    return playSlots(betAmount);
-                case 'dice':
-                    return playDice(betAmount);
-                case 'coinflip':
-                    return playCoinFlip(betAmount);
-                case 'roulette':
-                    return playRoulette(betAmount);
-                case 'blackjack':
-                    return playBlackjack(betAmount);
-                case 'wheel':
-                    return playWheel(betAmount);
-                default:
-                    return { win: false, amount: 0, display: 'Game error' };
-            }
-        }
-
-        function playSlots(betAmount) {
-            const symbols = casinoGames.slots.symbols;
-            const payouts = casinoGames.slots.payouts;
-            
-            // Generate three random symbols
-            const reel1 = symbols[Math.floor(Math.random() * symbols.length)];
-            const reel2 = symbols[Math.floor(Math.random() * symbols.length)];
-            const reel3 = symbols[Math.floor(Math.random() * symbols.length)];
-            
-            const combination = reel1 + reel2 + reel3;
-            const display = `${reel1} ${reel2} ${reel3}`;
-            
-            if (payouts[combination]) {
-                const winnings = betAmount * payouts[combination];
-                return { win: true, amount: winnings, display: display };
-            }
-            
-            return { win: false, amount: 0, display: display };
-        }
-
-        function playDice(betAmount) {
-            const dice1 = Math.floor(Math.random() * 6) + 1;
-            const dice2 = Math.floor(Math.random() * 6) + 1;
-            const total = dice1 + dice2;
-            
-            const display = `🎲 ${dice1} + ${dice2} = ${total}`;
-            
-            // Win if total is 7 or 11 (craps rules)
-            if (total === 7 || total === 11) {
-                const winnings = betAmount * 2;
-                return { win: true, amount: winnings, display: display };
-            }
-            
-            return { win: false, amount: 0, display: display };
-        }
-
-        function playCoinFlip(betAmount) {
-            const result = Math.random() < 0.5 ? 'Heads' : 'Tails';
-            const display = result === 'Heads' ? '🪙 Heads' : '🪙 Tails';
-            
-            // 50% chance to win
-            if (Math.random() < 0.5) {
-                const winnings = betAmount * 2;
-                return { win: true, amount: winnings, display: display };
-            }
-            
-            return { win: false, amount: 0, display: display };
-        }
-
-        function playRoulette(betAmount) {
-            const numbers = [];
-            const colors = [];
-            
-            // Generate roulette numbers and colors
-            for (let i = 0; i <= 36; i++) {
-                numbers.push(i);
-                if (i === 0) {
-                    colors.push('green');
-                } else if ([1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36].includes(i)) {
-                    colors.push('red');
-                } else {
-                    colors.push('black');
-                }
-            }
-            
-            const resultIndex = Math.floor(Math.random() * numbers.length);
-            const number = numbers[resultIndex];
-            const color = colors[resultIndex];
-            
-            const display = `🎲 ${number} (${color})`;
-            
-            // Simple red/black betting with 48.6% win chance
-            if (color === 'red' || color === 'black') {
-                if (Math.random() < 0.486) {
-                    const winnings = betAmount * 2;
-                    return { win: true, amount: winnings, display: display };
-                }
-            }
-            
-            return { win: false, amount: 0, display: display };
-        }
-
-        function playBlackjack(betAmount) {
-            // Simplified blackjack - just compare with dealer
-            const playerHand = Math.floor(Math.random() * 11) + 10; // 10-20
-            const dealerHand = Math.floor(Math.random() * 11) + 10; // 10-20
-            
-            const display = `🃏 You: ${playerHand} vs Dealer: ${dealerHand}`;
-            
-            if (playerHand > dealerHand) {
-                const winnings = betAmount * 2;
-                return { win: true, amount: winnings, display: display };
-            } else if (playerHand === dealerHand) {
-                // Push - return bet
-                return { win: true, amount: betAmount, display: display + ' (Push)' };
-            }
-            
-            return { win: false, amount: 0, display: display };
-        }
-
-        function playWheel(betAmount) {
-            const segments = [10, 20, 30, 40, 50, 100, 200, 500];
-            const result = segments[Math.floor(Math.random() * segments.length)];
-            
-            const display = `🎡 ${result}x multiplier`;
-            
-            // 10% chance to win big
-            if (Math.random() < 0.1) {
-                const winnings = betAmount * result;
-                return { win: true, amount: winnings, display: display };
-            }
-            
-            return { win: false, amount: 0, display: display };
-        }
-
-        function createGameCard(game, gameId) {
+        function createGameCard(game) {
             const card = document.createElement('div');
             card.className = 'game-card';
-            card.onclick = () => playGame(gameId, game);
+            if (game.category === 'casino') {
+                card.classList.add('casino-game');
+            }
+            card.onclick = () => playGame(game);
             
             card.innerHTML = `
-                <img class="game-image" src="${game.image || 'https://via.placeholder.com/300x150/667eea/764ba2?text=Game'}" alt="${game.title}">
+                <img class="game-image" src="${game.image}" alt="${game.title}">
                 <div class="game-content">
                     <div class="game-title">${game.title}</div>
                     <div class="game-description">${game.description}</div>
                     <div class="game-stats">
                         <div class="game-views">
                             <i class="fas fa-eye"></i>
-                            <span>${game.views || 0}</span>
+                            <span>${game.views}</span>
                         </div>
                         <div class="game-rating">
                             <i class="fas fa-star"></i>
-                            <span>${game.rating || 0}</span>
+                            <span>${game.rating}</span>
                         </div>
                     </div>
-                    <button class="btn btn-sm" onclick="event.stopPropagation(); playGame('${gameId}', ${JSON.stringify(game).replace(/"/g, '&quot;')})">
+                    <button class="btn ${game.category === 'casino' ? 'btn-casino' : 'btn-sm'}" onclick="event.stopPropagation(); playGame(${JSON.stringify(game).replace(/"/g, '&quot;')})">
                         <i class="fas fa-play"></i>
                         Play Now
                     </button>
@@ -2833,33 +2837,366 @@
             return card;
         }
 
-        function playGame(gameId, game) {
-            // Increment view count
-            database.ref('games/' + gameId + '/views').set(
-                firebase.database.ServerValue.increment(1)
-            );
-            
-            // Update user statistics
-            database.ref('users/' + currentUser.id + '/statistics/gamesPlayed').set(
-                firebase.database.ServerValue.increment(1)
-            );
-            
-            // Open game link in Telegram
-            if (game.url) {
-                telegram.openLink(game.url);
+        function playGame(game) {
+            if (game.category === 'casino') {
+                switchScreen('casino');
             } else {
-                showToast('Game not available', 'warning');
+                // Update user statistics
+                database.ref('users/' + currentUser.id + '/statistics/gamesPlayed').set(
+                    firebase.database.ServerValue.increment(1)
+                );
+                
+                // Open game link if available
+                if (game.url && game.url !== '#casino') {
+                    telegram.openLink(game.url);
+                }
             }
+        }
+
+        // Casino Game Functions
+        function changeSlotBet(amount) {
+            slotBetAmount = Math.max(1, Math.min(10, slotBetAmount + amount));
+            document.getElementById('slotBet').textContent = slotBetAmount;
+            document.getElementById('spinCost').textContent = slotBetAmount;
+        }
+
+        function spinSlot() {
+            if (isSpinning) return;
+            
+            if (currentUser.balance < slotBetAmount) {
+                showToast('Insufficient balance!', 'error');
+                return;
+            }
+            
+            isSpinning = true;
+            document.getElementById('spinBtn').disabled = true;
+            
+            // Deduct bet amount
+            database.ref('users/' + currentUser.id + '/balance').set(
+                firebase.database.ServerValue.increment(-slotBetAmount)
+            );
+            
+            // Animate reels
+            const reels = document.querySelectorAll('.slot-reel');
+            reels.forEach(reel => {
+                reel.classList.add('spinning');
+            });
+            
+            // Spin for 2 seconds
+            setTimeout(() => {
+                // Generate random symbols
+                const results = [];
+                reels.forEach(reel => {
+                    const symbol = slotSymbols[Math.floor(Math.random() * slotSymbols.length)];
+                    reel.textContent = symbol;
+                    reel.classList.remove('spinning');
+                    results.push(symbol);
+                });
+                
+                // Check for wins
+                let winAmount = 0;
+                let winMessage = '';
+                
+                if (results[0] === results[1] && results[1] === results[2]) {
+                    // Three of a kind
+                    if (results[0] === '7️⃣') {
+                        winAmount = slotBetAmount * 10;
+                        winMessage = 'JACKPOT! Triple 7s!';
+                    } else if (results[0] === '💎') {
+                        winAmount = slotBetAmount * 5;
+                        winMessage = 'Diamonds! Big Win!';
+                    } else {
+                        winAmount = slotBetAmount * 3;
+                        winMessage = 'Three of a kind!';
+                    }
+                } else if (results[0] === results[1] || results[1] === results[2] || results[0] === results[2]) {
+                    // Two of a kind
+                    winAmount = slotBetAmount * 1.5;
+                    winMessage = 'Two of a kind!';
+                }
+                
+                if (winAmount > 0) {
+                    // Add winnings
+                    database.ref('users/' + currentUser.id + '/balance').set(
+                        firebase.database.ServerValue.increment(Math.floor(winAmount))
+                    );
+                    
+                    // Update statistics
+                    database.ref('users/' + currentUser.id + '/statistics/casinoWins').set(
+                        firebase.database.ServerValue.increment(1)
+                    );
+                    
+                    document.getElementById('slotResult').innerHTML = `<span style="color: var(--success-color);">${winMessage} You won ${Math.floor(winAmount)} BTX!</span>`;
+                    showToast(`${winMessage} +${Math.floor(winAmount)} BTX`, 'success');
+                } else {
+                    // Update statistics
+                    database.ref('users/' + currentUser.id + '/statistics/casinoLosses').set(
+                        firebase.database.ServerValue.increment(1)
+                    );
+                    
+                    document.getElementById('slotResult').innerHTML = '<span style="color: var(--danger-color);">Try again!</span>';
+                }
+                
+                // Update total wagered
+                database.ref('users/' + currentUser.id + '/statistics/totalWagered').set(
+                    firebase.database.ServerValue.increment(slotBetAmount)
+                );
+                
+                isSpinning = false;
+                document.getElementById('spinBtn').disabled = false;
+                
+                // Update balance
+                setTimeout(() => {
+                    updateUserInterface();
+                }, 1000);
+            }, 2000);
+        }
+
+        function flipCoin(choice) {
+            const betAmount = parseInt(document.getElementById('coinBet').value);
+            
+            if (currentUser.balance < betAmount) {
+                showToast('Insufficient balance!', 'error');
+                return;
+            }
+            
+            // Deduct bet
+            database.ref('users/' + currentUser.id + '/balance').set(
+                firebase.database.ServerValue.increment(-betAmount)
+            );
+            
+            // Animate coin
+            const coinDisplay = document.getElementById('coinDisplay');
+            coinDisplay.style.transform = 'rotateY(1800deg)';
+            coinDisplay.style.transition = 'transform 2s ease';
+            
+            setTimeout(() => {
+                const result = Math.random() < 0.5 ? 'heads' : 'tails';
+                coinDisplay.textContent = result === 'heads' ? '👑' : '🦅';
+                coinDisplay.style.transform = 'rotateY(0deg)';
+                
+                if (result === choice) {
+                    const winAmount = betAmount * 2;
+                    database.ref('users/' + currentUser.id + '/balance').set(
+                        firebase.database.ServerValue.increment(winAmount)
+                    );
+                    
+                    document.getElementById('coinResult').innerHTML = `<span style="color: var(--success-color);">${result.toUpperCase()}! You won ${winAmount} BTX!</span>`;
+                    showToast(`You won ${winAmount} BTX!`, 'success');
+                } else {
+                    document.getElementById('coinResult').innerHTML = `<span style="color: var(--danger-color);">${result.toUpperCase()}! You lost!</span>`;
+                }
+                
+                // Update statistics
+                database.ref('users/' + currentUser.id + '/statistics/totalWagered').set(
+                    firebase.database.ServerValue.increment(betAmount)
+                );
+                
+                setTimeout(() => {
+                    updateUserInterface();
+                }, 1000);
+            }, 2000);
+        }
+
+        function rollDice() {
+            const chosenNumber = parseInt(document.getElementById('diceNumber').value);
+            const betAmount = parseInt(document.getElementById('diceBet').value);
+            
+            if (currentUser.balance < betAmount) {
+                showToast('Insufficient balance!', 'error');
+                return;
+            }
+            
+            // Deduct bet
+            database.ref('users/' + currentUser.id + '/balance').set(
+                firebase.database.ServerValue.increment(-betAmount)
+            );
+            
+            // Animate dice
+            const diceDisplay = document.getElementById('diceDisplay');
+            diceDisplay.style.transform = 'rotate(720deg)';
+            diceDisplay.style.transition = 'transform 1s ease';
+            
+            setTimeout(() => {
+                const result = Math.floor(Math.random() * 6) + 1;
+                diceDisplay.textContent = ['⚀', '⚁', '⚂', '⚃', '⚄', '⚅'][result - 1];
+                diceDisplay.style.transform = 'rotate(0deg)';
+                
+                if (result === chosenNumber) {
+                    const winAmount = betAmount * 6;
+                    database.ref('users/' + currentUser.id + '/balance').set(
+                        firebase.database.ServerValue.increment(winAmount)
+                    );
+                    
+                    document.getElementById('diceResult').innerHTML = `<span style="color: var(--success-color);">Rolled ${result}! Perfect guess! You won ${winAmount} BTX!</span>`;
+                    showToast(`Perfect guess! +${winAmount} BTX`, 'success');
+                } else {
+                    document.getElementById('diceResult').innerHTML = `<span style="color: var(--danger-color);">Rolled ${result}! Try again!</span>`;
+                }
+                
+                // Update statistics
+                database.ref('users/' + currentUser.id + '/statistics/totalWagered').set(
+                    firebase.database.ServerValue.increment(betAmount)
+                );
+                
+                setTimeout(() => {
+                    updateUserInterface();
+                }, 1000);
+            }, 1000);
+        }
+
+        function playNumberGuess() {
+            const userGuess = parseInt(document.getElementById('guessNumber').value);
+            const betAmount = parseInt(document.getElementById('guessBet').value);
+            
+            if (currentUser.balance < betAmount) {
+                showToast('Insufficient balance!', 'error');
+                return;
+            }
+            
+            // Deduct bet
+            database.ref('users/' + currentUser.id + '/balance').set(
+                firebase.database.ServerValue.increment(-betAmount)
+            );
+            
+            // Generate random number
+            const secretNumber = Math.floor(Math.random() * 100) + 1;
+            const difference = Math.abs(secretNumber - userGuess);
+            
+            let winAmount = 0;
+            let message = '';
+            
+            if (difference === 0) {
+                winAmount = betAmount * 10;
+                message = `PERFECT! Number was ${secretNumber}!`;
+            } else if (difference <= 5) {
+                winAmount = betAmount * 3;
+                message = `Very close! Number was ${secretNumber}!`;
+            } else if (difference <= 10) {
+                winAmount = betAmount * 2;
+                message = `Close! Number was ${secretNumber}!`;
+            } else {
+                message = `Number was ${secretNumber}. Try again!`;
+            }
+            
+            if (winAmount > 0) {
+                database.ref('users/' + currentUser.id + '/balance').set(
+                    firebase.database.ServerValue.increment(winAmount)
+                );
+                
+                document.getElementById('guessResult').innerHTML = `<span style="color: var(--success-color);">${message} You won ${winAmount} BTX!</span>`;
+                showToast(`${message} +${winAmount} BTX`, 'success');
+            } else {
+                document.getElementById('guessResult').innerHTML = `<span style="color: var(--danger-color);">${message} You lost!</span>`;
+            }
+            
+            // Update statistics
+            database.ref('users/' + currentUser.id + '/statistics/totalWagered').set(
+                firebase.database.ServerValue.increment(betAmount)
+            );
+            
+            setTimeout(() => {
+                updateUserInterface();
+            }, 1000);
+        }
+
+        function spinWheel() {
+            const spinCost = 2;
+            
+            if (currentUser.balance < spinCost) {
+                showToast('Insufficient balance!', 'error');
+                return;
+            }
+            
+            // Deduct cost
+            database.ref('users/' + currentUser.id + '/balance').set(
+                firebase.database.ServerValue.increment(-spinCost)
+            );
+            
+            // Animate wheel
+            const wheelDisplay = document.getElementById('wheelDisplay');
+            wheelDisplay.style.transform = 'rotate(3600deg)';
+            wheelDisplay.style.transition = 'transform 3s ease';
+            
+            setTimeout(() => {
+                const prizes = [
+                    { value: 1, text: '1 BTX' },
+                    { value: 2, text: '2 BTX' },
+                    { value: 5, text: '5 BTX' },
+                    { value: 10, text: '10 BTX' },
+                    { value: 20, text: '20 BTX' },
+                    { value: 50, text: 'JACKPOT 50 BTX!' }
+                ];
+                
+                const prize = prizes[Math.floor(Math.random() * prizes.length)];
+                
+                database.ref('users/' + currentUser.id + '/balance').set(
+                    firebase.database.ServerValue.increment(prize.value)
+                );
+                
+                document.getElementById('wheelResult').innerHTML = `<span style="color: var(--success-color);">You won ${prize.text}!</span>`;
+                showToast(`Wheel prize: ${prize.text}!`, 'success');
+                
+                // Update statistics
+                database.ref('users/' + currentUser.id + '/statistics/totalWagered').set(
+                    firebase.database.ServerValue.increment(spinCost)
+                );
+                
+                wheelDisplay.style.transform = 'rotate(0deg)';
+                
+                setTimeout(() => {
+                    updateUserInterface();
+                }, 1000);
+            }, 3000);
+        }
+
+        function chooseCrystal(boxNumber) {
+            const boxCost = 1;
+            
+            if (currentUser.balance < boxCost) {
+                showToast('Insufficient balance!', 'error');
+                return;
+            }
+            
+            // Deduct cost
+            database.ref('users/' + currentUser.id + '/balance').set(
+                firebase.database.ServerValue.increment(-boxCost)
+            );
+            
+            // Randomly select winning box
+            const winningBox = Math.floor(Math.random() * 3) + 1;
+            const winAmount = boxCost * 5;
+            
+            if (boxNumber === winningBox) {
+                database.ref('users/' + currentUser.id + '/balance').set(
+                    firebase.database.ServerValue.increment(winAmount)
+                );
+                
+                document.getElementById('crystalResult').innerHTML = `<span style="color: var(--success-color);">🎉 JACKPOT! Box ${boxNumber} contained ${winAmount} BTX!</span>`;
+                showToast(`JACKPOT! +${winAmount} BTX!`, 'success');
+            } else {
+                document.getElementById('crystalResult').innerHTML = `<span style="color: var(--danger-color);">Box ${boxNumber} was empty. Winning box was ${winningBox}.</span>`;
+            }
+            
+            // Update statistics
+            database.ref('users/' + currentUser.id + '/statistics/totalWagered').set(
+                firebase.database.ServerValue.increment(boxCost)
+            );
+            
+            setTimeout(() => {
+                updateUserInterface();
+            }, 1000);
         }
 
         function searchGames() {
             const searchTerm = document.getElementById('gameSearch').value.toLowerCase();
-            const gameCards = document.querySelectorAll('.game-card, .casino-game');
+            const gameCards = document.querySelectorAll('.game-card');
             
             gameCards.forEach(card => {
-                const title = card.querySelector('.game-title, .casino-title').textContent.toLowerCase();
+                const title = card.querySelector('.game-title').textContent.toLowerCase();
+                const description = card.querySelector('.game-description').textContent.toLowerCase();
                 
-                if (title.includes(searchTerm)) {
+                if (title.includes(searchTerm) || description.includes(searchTerm)) {
                     card.style.display = 'block';
                 } else {
                     card.style.display = 'none';
@@ -2875,41 +3212,30 @@
             event.currentTarget.classList.add('active');
             
             // Filter games
-            const gameCards = document.querySelectorAll('.game-card, .casino-game');
+            const gameCards = document.querySelectorAll('.game-card');
             
-            if (category === 'all') {
-                gameCards.forEach(card => {
+            gameCards.forEach(card => {
+                if (category === 'all') {
                     card.style.display = 'block';
-                });
-            } else if (category === 'casino') {
-                document.querySelectorAll('.casino-game').forEach(card => {
-                    card.style.display = 'block';
-                });
-                document.querySelectorAll('.game-card').forEach(card => {
-                    card.style.display = 'none';
-                });
-            } else {
-                // This would require category data in the game objects
-                gameCards.forEach(card => {
-                    card.style.display = 'block';
-                });
-            }
+                } else {
+                    // For casino category, show casino games
+                    if (category === 'casino') {
+                        card.style.display = card.classList.contains('casino-game') ? 'block' : 'none';
+                    } else {
+                        card.style.display = 'block'; // Show all for demo
+                    }
+                }
+            });
         }
 
         function sortGames() {
             const sortBy = document.getElementById('sortSelect').value;
             const gamesList = document.getElementById('gamesList');
-            const gameCards = Array.from(gamesList.querySelectorAll('.game-card, .casino-game'));
+            const gameCards = Array.from(gamesList.querySelectorAll('.game-card'));
             
-            gameCards.sort((a, b) => {
-                // Sorting logic would need to be implemented based on the sort type
-                return 0;
-            });
-            
-            gamesList.innerHTML = '';
-            gameCards.forEach(card => {
-                gamesList.appendChild(card);
-            });
+            // Sort logic would be implemented here
+            // For now, just reload games
+            loadGames();
         }
 
         function loadPosts() {
@@ -3016,11 +3342,10 @@
                 return;
             }
             
-            const telegramUser = telegram.initDataUnsafe?.user;
             const postData = {
                 authorId: currentUser.id,
-                authorName: telegramUser ? telegramUser.first_name + ' ' + (telegramUser.last_name || '') : 'Unknown',
-                authorPhoto: telegramUser ? telegramUser.photo_url : '',
+                authorName: currentUser.name,
+                authorPhoto: currentUser.photo_url,
                 content: content,
                 timestamp: new Date().toISOString(),
                 likes: [],
@@ -3182,11 +3507,10 @@
                 return;
             }
             
-            const telegramUser = telegram.initDataUnsafe?.user;
             const commentData = {
                 authorId: currentUser.id,
-                authorName: telegramUser ? telegramUser.first_name + ' ' + (telegramUser.last_name || '') : 'Unknown',
-                authorPhoto: telegramUser ? telegramUser.photo_url : '',
+                authorName: currentUser.name,
+                authorPhoto: currentUser.photo_url,
                 content: content,
                 timestamp: new Date().toISOString()
             };
@@ -3202,12 +3526,12 @@
         }
 
         function sharePost(postId) {
-            const shareUrl = `https://t.me/YourGame_bot/open?start=${currentUser.id}`;
+            const shareUrl = `https://t.me/GamingHub_bot/open?start=${currentUser.id}`;
             
             if (navigator.share) {
                 navigator.share({
-                    title: 'Check out this post on Gaming Platform',
-                    text: 'Join me on Gaming Platform!',
+                    title: 'Check out this post on Gaming Hub',
+                    text: 'Join me on Gaming Hub!',
                     url: shareUrl
                 });
             } else {
@@ -3270,90 +3594,71 @@
             
             const btxAmount = tonAmount * 500;
             
-            // Create deposit record
-            const depositData = {
-                userId: currentUser.id,
-                tonAmount: tonAmount,
-                btxAmount: btxAmount,
-                walletAddress: currentUser.walletAddress,
-                timestamp: new Date().toISOString(),
-                status: 'pending',
-                type: 'deposit'
-            };
-            
-            database.ref('transactions').push(depositData).then((snapshot) => {
-                const transactionId = snapshot.key;
+            // Create transaction via TON Connect
+            if (tonConnectUI && tonConnectUI.wallet) {
+                const transaction = {
+                    messages: [
+                        {
+                            address: "UQACiEaN0Qt2TjpxBdJ7XZateCvEPjdA7qf5bMo5uCPLbSoh", // Your wallet address
+                            amount: tonAmount * 1000000000, // Convert to nanoTON
+                            payload: `Deposit ${tonAmount} TON for ${btxAmount} BTX`
+                        }
+                    ]
+                };
                 
-                // Update UI to show payment info
-                document.getElementById('depositSection').innerHTML = `
-                    <div class="card-title">
-                        <i class="fas fa-clock"></i>
-                        Deposit Processing
-                    </div>
-                    <div style="text-align: center; padding: 20px 0;">
-                        <div style="font-size: 48px; color: var(--warning-color); margin-bottom: 15px;">
-                            <i class="fas fa-hourglass-half"></i>
-                        </div>
-                        <div style="font-size: 18px; font-weight: 600; margin-bottom: 10px;">
-                            Transaction initiated
-                        </div>
-                        <div style="font-size: 14px; color: var(--text-secondary); margin-bottom: 20px;">
-                            Check your TON wallet to confirm the payment of ${tonAmount} TON
-                        </div>
-                        <div style="font-size: 12px; color: var(--text-secondary); margin-bottom: 15px;">
-                            Transaction ID: ${transactionId}
-                        </div>
-                        <button class="btn btn-outline" onclick="copyTransactionId('${transactionId}')">
-                            <i class="fas fa-copy"></i>
-                            Copy Transaction ID
-                        </button>
-                    </div>
-                `;
-                
-                showToast('Please check your TON wallet to confirm the payment', 'info');
-                
-                // Set up listener for transaction confirmation
-                setupDepositListener(transactionId, btxAmount);
-                
-            }).catch((error) => {
-                console.error('Error creating deposit:', error);
-                showToast('Failed to create deposit', 'error');
-            });
-        }
-
-        function setupDepositListener(transactionId, btxAmount) {
-            const transactionRef = database.ref('transactions/' + transactionId);
-            
-            // In a real implementation, you would set up a webhook or monitor the blockchain
-            // For this demo, we'll simulate confirmation after 30 seconds
-            setTimeout(() => {
-                transactionRef.update({
-                    status: 'confirmed',
-                    confirmedAt: new Date().toISOString()
-                }).then(() => {
-                    // Credit user's balance
-                    database.ref('users/' + currentUser.id + '/balance').set(
-                        firebase.database.ServerValue.increment(btxAmount)
-                    );
-                    
-                    // Update statistics
-                    database.ref('users/' + currentUser.id + '/totalEarned').set(
-                        firebase.database.ServerValue.increment(btxAmount)
-                    );
-                    
-                    showToast('Deposit confirmed! ' + btxAmount + ' BTX added to your balance', 'success');
-                    
-                    // Update UI
-                    loadTransactions();
-                    updateUserInterface();
-                });
-            }, 30000); // 30 seconds for demo
-        }
-
-        function copyTransactionId(transactionId) {
-            navigator.clipboard.writeText(transactionId).then(() => {
-                showToast('Transaction ID copied to clipboard!', 'success');
-            });
+                tonConnectUI.sendTransaction(transaction)
+                    .then(() => {
+                        // Transaction successful
+                        showToast('Deposit transaction sent! BTX will be credited after confirmation.', 'success');
+                        
+                        // Create deposit record
+                        const depositData = {
+                            userId: currentUser.id,
+                            tonAmount: tonAmount,
+                            btxAmount: btxAmount,
+                            walletAddress: currentUser.walletAddress,
+                            timestamp: new Date().toISOString(),
+                            status: 'pending',
+                            type: 'deposit'
+                        };
+                        
+                        database.ref('transactions').push(depositData).then(() => {
+                            // Simulate confirmation after 30 seconds
+                            setTimeout(() => {
+                                database.ref('transactions').orderByChild('userId').equalTo(currentUser.id).limitToLast(1).once('value').then((snapshot) => {
+                                    const transactions = snapshot.val();
+                                    if (transactions) {
+                                        const transactionId = Object.keys(transactions)[0];
+                                        database.ref('transactions/' + transactionId).update({
+                                            status: 'confirmed',
+                                            confirmedAt: new Date().toISOString()
+                                        }).then(() => {
+                                            // Credit user's balance
+                                            database.ref('users/' + currentUser.id + '/balance').set(
+                                                firebase.database.ServerValue.increment(btxAmount)
+                                            );
+                                            
+                                            // Update total earned
+                                            database.ref('users/' + currentUser.id + '/totalEarned').set(
+                                                firebase.database.ServerValue.increment(btxAmount)
+                                            );
+                                            
+                                            showToast(`Deposit confirmed! ${btxAmount} BTX added to your balance`, 'success');
+                                            loadTransactions();
+                                            updateUserInterface();
+                                        });
+                                    }
+                                });
+                            }, 30000);
+                        });
+                    })
+                    .catch((error) => {
+                        console.error('Transaction failed:', error);
+                        showToast('Transaction failed. Please try again.', 'error');
+                    });
+            } else {
+                showToast('Wallet not connected', 'error');
+            }
         }
 
         function initiateWithdraw() {
@@ -3397,6 +3702,9 @@
                 );
                 
                 showToast('Withdrawal request submitted! Awaiting admin approval', 'info');
+                
+                // Send notification to bot
+                sendBotNotification(`New withdrawal request: ${btxAmount} BTX (${tonAmount} TON) from ${currentUser.name} (${currentUser.id})`);
                 
                 // Update UI
                 loadTransactions();
@@ -3489,29 +3797,41 @@
         function loadTasks() {
             const tasksList = document.getElementById('tasksList');
             
-            database.ref('tasks').orderByChild('active').equalTo(true).once('value').then((snapshot) => {
-                const tasks = snapshot.val();
-                tasksList.innerHTML = '';
-                
-                if (tasks) {
-                    Object.keys(tasks).forEach(taskId => {
-                        const task = tasks[taskId];
-                        const taskCard = createTaskCard(task, taskId);
-                        tasksList.appendChild(taskCard);
-                    });
-                } else {
-                    tasksList.innerHTML = `
-                        <div class="empty-state">
-                            <div class="empty-icon">
-                                <i class="fas fa-tasks"></i>
-                            </div>
-                            <div class="empty-title">No Tasks Available</div>
-                            <div class="empty-description">Tasks will be added soon by the admin</div>
-                        </div>
-                    `;
+            // Sample tasks
+            const tasks = [
+                {
+                    id: '1',
+                    title: 'Watch 5 Ads',
+                    description: 'Watch 5 advertisements to earn BTX rewards',
+                    category: 'Easy',
+                    reward: 2,
+                    image: 'https://picsum.photos/seed/task1/60/60',
+                    link: '#'
+                },
+                {
+                    id: '2',
+                    title: 'Join Telegram Channel',
+                    description: 'Join our official Telegram channel for updates',
+                    category: 'Social',
+                    reward: 5,
+                    image: 'https://picsum.photos/seed/task2/60/60',
+                    link: 'https://t.me/gaminghub'
+                },
+                {
+                    id: '3',
+                    title: 'Play 3 Games',
+                    description: 'Play any 3 casino games to complete this task',
+                    category: 'Gaming',
+                    reward: 3,
+                    image: 'https://picsum.photos/seed/task3/60/60',
+                    link: '#casino'
                 }
-            }).catch((error) => {
-                console.error('Error loading tasks:', error);
+            ];
+            
+            tasksList.innerHTML = '';
+            tasks.forEach(task => {
+                const taskCard = createTaskCard(task, task.id);
+                tasksList.appendChild(taskCard);
             });
         }
 
@@ -3524,7 +3844,7 @@
             
             div.innerHTML = `
                 <div class="task-header">
-                    <img class="task-image" src="${task.image || 'https://via.placeholder.com/60'}" alt="${task.title}">
+                    <img class="task-image" src="${task.image}" alt="${task.title}">
                     <div class="task-info">
                         <div class="task-title">${task.title}</div>
                         <span class="task-category">${task.category}</span>
@@ -3548,7 +3868,14 @@
 
         function startTask(taskId, taskLink, reward) {
             // Open task link
-            telegram.openLink(taskLink);
+            if (taskLink.startsWith('#')) {
+                // Internal navigation
+                if (taskLink === '#casino') {
+                    switchScreen('casino');
+                }
+            } else {
+                telegram.openLink(taskLink);
+            }
             
             // Show timer overlay
             showToast('Task started! Complete after 10 seconds...', 'info');
@@ -3593,55 +3920,33 @@
             }
         }
 
-        function initializeMonetagAds() {
-            // Initialize Monetag ad script
-            const script = document.createElement('script');
-            script.src = 'https://libtl.com/sdk.js';
-            script.setAttribute('data-zone', '10168820');
-            script.setAttribute('data-sdk', 'show_10168820');
-            script.async = true;
-            
-            script.onload = function() {
-                console.log('Monetag ads initialized');
-                document.getElementById('adContainer').innerHTML = `
-                    <div id="monetag-ad">
-                        <div style="color: var(--text-secondary);">Ads will display here</div>
-                    </div>
-                `;
-            };
-            
-            script.onerror = function() {
-                console.error('Failed to load Monetag ads');
-                document.getElementById('adContainer').innerHTML = `
-                    <div style="color: var(--danger-color);">
-                        <i class="fas fa-exclamation-triangle"></i>
-                        <div>Failed to load ads</div>
-                    </div>
-                `;
-            };
-            
-            document.head.appendChild(script);
-        }
-
         function watchAd() {
-            // Check if Monetag is available
-            if (typeof window.monetag !== 'undefined') {
-                // Show ad
-                window.monetag.showAd();
+            // Show loading message
+            showToast('Loading advertisement...', 'info');
+            
+            // Load Monetag ad script if not already loaded
+            if (typeof libtl === 'undefined') {
+                const script = document.createElement('script');
+                script.src = '//libtl.com/sdk.js';
+                script.setAttribute('data-zone', '10168820');
+                script.setAttribute('data-sdk', 'show_10168820');
                 
-                // Simulate ad completion after 30 seconds
-                showToast('Ad started! Watching...', 'info');
+                script.onload = function() {
+                    setTimeout(() => {
+                        completeAd();
+                    }, 30000); // 30 seconds for ad viewing
+                };
                 
+                script.onerror = function() {
+                    showToast('Failed to load ad. Please try again.', 'error');
+                };
+                
+                document.head.appendChild(script);
+            } else {
+                // Ad SDK already loaded, simulate ad viewing
                 setTimeout(() => {
                     completeAd();
                 }, 30000);
-            } else {
-                // Fallback: simulate ad watching
-                showToast('Loading ad...', 'info');
-                
-                setTimeout(() => {
-                    completeAd();
-                }, 5000);
             }
         }
 
@@ -3714,7 +4019,7 @@
             const div = document.createElement('div');
             div.className = 'referral-item';
             
-            const isActive = new Date() - new Date(referral.lastActive) < 7 * 24 * 60 * 60 * 1000; // Active in last 7 days
+            const isActive = new Date() - new Date(referral.lastActive || referral.joined) < 7 * 24 * 60 * 60 * 1000; // Active in last 7 days
             
             div.innerHTML = `
                 <img class="referral-avatar" src="${referral.photo_url || 'https://via.placeholder.com/40'}" alt="${referral.name}">
@@ -3987,9 +4292,14 @@
             });
         }
 
+        function updateLastUpdateTime() {
+            const now = new Date();
+            document.getElementById('lastUpdate').textContent = now.toLocaleDateString();
+        }
+
         function sendBotNotification(message) {
             // Send notification to Telegram bot
-            const botToken = 'YOUR_BOT_TOKEN';
+            const botToken = '8205391931:AAFs5FnMbr96RpZ8DLJEDyKpgZzCmHaqszw';
             const chatId = 'YOUR_CHAT_ID'; // This should be your admin chat ID
             
             fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
